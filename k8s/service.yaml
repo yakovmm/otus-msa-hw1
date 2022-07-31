@@ -3,10 +3,10 @@ kind: Service
 metadata:
   name: otus-msa-hw1
   labels:
-    app: eznd-otus-msa-hw1
+    app: ym-otus-msa-hw1
 spec:
   selector:
-    app: eznd-otus-msa-hw1
+    app: ym-otus-msa-hw1
   ports:
     - protocol: TCP
       port: 80

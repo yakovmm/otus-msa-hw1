@@ -1,15 +1,18 @@
-# Курс OTUS Microservice architect
-## ДЗ №1 - «Основы работы с Kubernetes»
+## Курс OTUS Microservice architect
+### ДЗ №1 - «Основы работы с Kubernetes»
 
 1. ```
    Создать минимальный сервис, который отвечает на порту 8000, 
    имеет http-метод GET /health/ RESPONSE: {"status": "OK"}
    Собрать локально образ приложения в докер.
    Запушить образ в docker hub
-   ```
-    `mvn clean package` собирает исполняемый JAR-файл (при проверке делать не надо, сделано заранее)
+   ``` 
+   `mvn clean package` – собирает исполняемый JAR-файл (при проверке делать не надо, сделано заранее)
 
-    `make build && make push` собирает образ `yakovmm/otus-msa-hw1:latest` и пушит его в docker hub по тому же адресу (при проверке делать не надо, сделано заранее)
+   `docker build -t yakovmm/otus-msa-hw1:v1 -f docker/Dockerfile .` – собирает образ yakovmm/otus-msa-hw1:v1 (при проверке делать не надо, сделано заранее)
+
+   `docker push yakovmm/otus-msa-hw1:v1` – пушит образ в docker hub (при проверке делать не надо, сделано заранее)
+
 
 2. ```
    Написать манифесты для деплоя в k8s для этого сервиса. 
@@ -21,13 +24,13 @@
    В итоге, после применения манифестов GET запрос на http://arch.homework/health должен отдавать {“status”: “OK”}.
    ```
    
-    `make k8s-apply` применяет манифесты
+    `kubectl apply -f k8s/` – применяет манифесты
 
-    При условии корректной настройки kubectl + /etc/hosts, по адресу http://arch.homework/health доступен хелсчек приложения 
+    При условии корректной настройки kubectl + /etc/hosts, по адресу http://arch.homework/health доступен healthcheck приложения 
 
-    `make newman` запускает прогон коллекции Postman по всем адресам приложения
+    `postman/collection.json` - коллекция скриптов Postman для тестирования по всем адресам приложения
  
-    `make k8s-delete` удаляет созданные сущности
+    `kubectl delete deployment/otus-msa-hw1 service/otus-msa-hw1 ingress/ingress-otus-msa-hw1 ingress/ingress-otus-msa-hw1-rewrite` – удаляет созданные сущности
 
 3. ```
    В Ingress-е должно быть правило, которое форвардит все запросы с /otusapp/{student name}/* на сервис с rewrite-ом пути. Где {student name} - это имя студента
