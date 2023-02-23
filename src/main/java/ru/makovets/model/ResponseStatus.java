@@ -1,16 +1,11 @@
 package ru.makovets.model;
 
-import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import org.springframework.stereotype.Component;
+import lombok.Value;
 
-@Component
-@AllArgsConstructor
-@NoArgsConstructor
-@Getter
+@Value
 @Builder
 public class ResponseStatus {
-    private String status;
+
+    String status;
 }

@@ -5,10 +5,10 @@ metadata:
   labels:
     app: ym-otus-msa-hw1
 spec:
+  type: NodePort
   selector:
     app: ym-otus-msa-hw1
   ports:
     - protocol: TCP
       port: 80
       targetPort: 8000
-  type: NodePort
