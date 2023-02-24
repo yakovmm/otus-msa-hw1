@@ -2,7 +2,7 @@ spring:
   application:
     name: springboot
 server:
-  port: 8000
+  port: ${HTTP_PORT:80}
 logging:
   level:
-    root: ERROR
+    root: ${APP_LOG_LEVEL:INFO}
